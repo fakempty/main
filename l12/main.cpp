@@ -47,16 +47,16 @@ public:
         this->name=temp;
     }
 
-    virtual void display() const {
+    virtual void show() const {
         cout << "Student: " << name << "  Age: " << age  << "\n";
     }
 
-    virtual void displayname() const {
-        cout << "Student: " << name << "\n";
+    virtual void showname() const {
+        cout << "Student: " << name <<" ";
     }
 
-    virtual void displayage()const{
-        cout << " age:"<<age<<"\n";
+    virtual void showage()const{
+        cout << " age:"<<age;
     }
 
     static void studentcount() {
@@ -64,8 +64,8 @@ public:
     }
 
     friend ostream& operator <<(ostream& out, const Student& temp){
-        temp.displayname();
-        temp.displayage();
+        temp.showname();
+        temp.showage();
         cout<<"name of student-"<<temp.name<<" age:"<<temp.age;
         return out;
     }
@@ -86,7 +86,7 @@ public:
 class firstyearStudent :public Student {
   public:
     firstyearStudent(string n,int a) :Student(n,a){}
-    void display() const override{
+    void show() const override{
         cout<<"first-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
 };
@@ -94,7 +94,7 @@ class firstyearStudent :public Student {
 class secondyearStudent :public Student {
 public:
     secondyearStudent(string n,int a) :Student(n,a){}
-    void display() const override{
+    void show() const override{
         cout<<"second-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
 };
@@ -102,7 +102,7 @@ public:
 class thirdyearStudent :public Student {
 public:
     thirdyearStudent(string n,int a) :Student(n,a){}
-    void display() const override{
+    void show() const override{
         cout<<"third-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
 };
@@ -110,7 +110,7 @@ public:
 class forthyearStudent :public Student {
 public:
     forthyearStudent(string n,int a) :Student(n,a){}
-    void display() const override{
+    void show() const override{
         cout<<"forth-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
 };
@@ -118,7 +118,7 @@ public:
 class fifthyearStudent :public Student {
 public:
     fifthyearStudent(string n,int a) :Student(n,a){}
-    void display() const override{
+    void show() const override{
         cout<<"fifth-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
 };
@@ -135,7 +135,7 @@ public:
 
     Para(string n, int d) : name(n), duration(d) {}
 
-    virtual void info() const{
+    virtual void show() const{
         cout << "para: " << name << " Duration:" << duration << " min\n";
     }
     virtual void showpara() const{
@@ -149,19 +149,19 @@ public:
     }
 };
 
-class lecture:public Para{
+class Lecture:public Para{
 public:
-    lecture(string n, int d) : Para (n,d){}
-    void info() const override{
+    Lecture(string n, int d) : Para (n,d){}
+    void show() const override{
         cout<<"lecture "<<this->name<<" duration:"<<this->duration<<"\n";
     }
 };
 
-class laba:public Para{
+class Laba:public Para{
 public:
-    laba(string n, int d) : Para (n,d){}
-    void info() const override{
-        cout<<"laba "<<this->name<<" duration:"<<this->duration<<"\n";
+    Laba(string n, int d) : Para (n,d){}
+    void show() const override{
+        cout<<"Laba "<<this->name<<" duration:"<<this->duration<<"\n";
     }
 };
 
@@ -178,7 +178,7 @@ public:
         cout << name << " is teaching " ;
         para.showpara();
         cout<< " to ";
-        student.displayname();
+        student.showname();
         cout<<"for: ";
         para.showduration();
         cout<<"min"<<endl;
@@ -196,11 +196,24 @@ public:
        cout << name << " is teaching " ;
        para.showpara();
        cout<< " to ";
-       student.displayname();
+       student.showname();
        cout<<"for: ";
        para.showduration();
        cout<<"min"<<endl;
    }
+};
+
+class Asist :public Teacher{
+public:
+    Asist(string n): Teacher(n){}
+    void teach( Student& student,  Para& para) const override{\
+        cout<<"assit-";
+        cout << name << " is helping with " ;
+        para.showpara();
+        cout<< " to ";
+        student.showname();
+        cout<<endl;
+    }
 };
 
 class Curs{
@@ -212,13 +225,14 @@ private:
 public:
     Curs(string n,Teacher* t,Para* p) : cursname(n), teacher(t), para(p) {}
     void startCurs(Student& student) const{
-      cout<<"curs "<<cursname<<" starting\n";
+      cout<<"-curs "<<cursname<<" starting\n";
       teacher->teach(student,*para);
     }
     ~Curs(){
       cout<<"---destroing curs " <<cursname<<"\n";
     }
 };
+
 
 int main() {
 
@@ -244,11 +258,34 @@ int main() {
 
     Student student4=student3+student1;
     student4.display();*/
+
     firstyearStudent student1("Bodya",19);
     secondyearStudent student2("oleg",17);
     thirdyearStudent student3("kolia",18);
     forthyearStudent student4("sasha",20);
     fifthyearStudent student5("olya",19);
 
+    Profesor profesor1("profisional");
+    Asist asist1("helper");
+
+    Lecture lecture1("algebra",120);
+    Laba laba1("laba(oop)",60);
+
+    Curs curs1("ipz",&profesor1,&lecture1);
+    Curs curs2("phizicalistu",&asist1,&laba1);
+
+    student1.show();
+    student2.show();
+    student3.show();
+    student4.show();
+    student5.show();
+
+    curs1.startCurs(student1);
+    curs2.startCurs(student2);
+    curs1.startCurs(student3);
+    curs2.startCurs(student4);
+    curs2.startCurs(student5);
+
+    Student::studentcount();
     return 0;
 }
