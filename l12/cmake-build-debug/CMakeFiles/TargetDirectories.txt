@@ -1,0 +1,3 @@
+C:/Users/kokak/OneDrive/Рабочий стол/сщв/2/!!!!!!!/main/l12/cmake-build-debug/CMakeFiles/l12.dir
+C:/Users/kokak/OneDrive/Рабочий стол/сщв/2/!!!!!!!/main/l12/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/kokak/OneDrive/Рабочий стол/сщв/2/!!!!!!!/main/l12/cmake-build-debug/CMakeFiles/rebuild_cache.dir
