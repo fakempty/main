@@ -4,4 +4,5 @@ project(l12)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(l12 main.cpp
-        "cmake-build-debug/class student.h")
+        "cmake-build-debug/class student.h"
+        Student.h)

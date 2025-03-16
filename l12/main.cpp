@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
 class Student {
@@ -35,6 +34,12 @@ public:
         age++;
         cout<<"incrised age for "<<this->name<<"\n";
         return *this;
+    }
+
+    Student& operator=(Student& temp){//--------operator= forth laba
+          this->name=temp.name;
+          this->age=temp.age;
+          return *this;
     }
 
     /*Student operator+(Student& temp){
@@ -77,6 +82,7 @@ public:
         in>>temp.age;
         return in;
     }
+    virtual void study() const =0;//----------------seven from fifth
 
     virtual ~Student() {
         cout << "---Destroying student: " << name << "\n";
@@ -85,15 +91,29 @@ public:
 
 class firstyearStudent :public Student {
   public:
+    firstyearStudent& operator=(Student& temp){//--------operator= forth laba
+        Student::operator=(temp);
+        cout<<"-------------aleale---";
+        return *this;
+    }
+    void study()const override{
+      cout<<this->name<<" learning basicks\n";
+      }
     firstyearStudent(string n,int a) :Student(n,a){}
     void show() const override{
         cout<<"first-year student-"<<this->name<<" age:"<<this->age<<"\n";
+    }
+    void showname() const override{//-------------------second fifth laba------------------second virtual
+      cout<<"name-"<<this->name;
     }
 };
 
 class secondyearStudent :public Student {
 public:
     secondyearStudent(string n,int a) :Student(n,a){}
+    void study()const override{
+        cout<<this->name<<" learning oop\n";
+    }
     void show() const override{
         cout<<"second-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
@@ -102,6 +122,9 @@ public:
 class thirdyearStudent :public Student {
 public:
     thirdyearStudent(string n,int a) :Student(n,a){}
+    void study()const override{
+        cout<<this->name<<" learning ooop\n";
+    }
     void show() const override{
         cout<<"third-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
@@ -110,18 +133,28 @@ public:
 class forthyearStudent :public Student {
 public:
     forthyearStudent(string n,int a) :Student(n,a){}
+    void study()const override{
+        cout<<this->name<<" learning oooop\n";
+    }
     void show() const override{
         cout<<"forth-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
 };
 
-class fifthyearStudent :public Student {
+class fifthyearStudent final:public Student {
 public:
     fifthyearStudent(string n,int a) :Student(n,a){}
+    void study()const override{
+        cout<<this->name<<" learning xl oop\n";
+    }
     void show() const override{
         cout<<"fifth-year student-"<<this->name<<" age:"<<this->age<<"\n";
     }
 };
+
+/*class fifthfinal:public fifthyearStudent {// ---------------fifth form fifht laba
+  public:
+};*/
 
  int Student::count=0;
 
@@ -233,6 +266,23 @@ public:
     }
 };
 
+/*class Randomazer{--------------------first form 4------------
+protected:
+  string name;
+
+public:
+  Randomazer (string n) :name(n){}
+    void show(Randomazer& r)const{//virtual
+     cout<<"test show--";
+     }
+     ~Randomazer();// -------------no virtual
+  };
+
+class random:public Randomazer{
+  void show(Randomazer& r)const {//override
+    cout<<"test show another --";
+    }
+  };*/
 
 int main() {
 
@@ -274,7 +324,7 @@ int main() {
     Curs curs1("ipz",&profesor1,&lecture1);
     Curs curs2("phizicalistu",&asist1,&laba1);
 
-    student1.show();
+    student1.show();//-----------------six of fifth laba
     student2.show();
     student3.show();
     student4.show();
@@ -286,6 +336,19 @@ int main() {
     curs2.startCurs(student4);
     curs2.startCurs(student5);
 
+    Student* student6 = new firstyearStudent("alesha",19);//-----------third of fifth lab
+    (*student6).show();
+    delete student6;
+
     Student::studentcount();
+
+    firstyearStudent st(" ",1);//--------operator= forth laba
+    thirdyearStudent st2("3",2);
+    st=st2;
+    st.show();
+    st2.show();
+
+    student2.study();
+
     return 0;
 }
