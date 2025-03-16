@@ -2,14 +2,18 @@
 #include <string>
 using namespace std;
 
-class Student {
+class interface{
+public:
+    virtual void print()const = 0;//------------eight from fifth laba
+};
+
+class Student : public interface{
 protected:
     string name;
     int age;
     static int count;
 
 public:
-
     Student() : name("Unknown"), age(0) {
         count++;
     }
@@ -47,6 +51,10 @@ public:
         string bothname=this->name+" and "+temp.name;
         return Student(bothname,evarageage);
     }*/
+
+    void print()const override{//------------eight from fifth laba
+      cout<<"la;alalalalal\n";
+    }
 
     virtual void setname(string temp){
         this->name=temp;
@@ -158,7 +166,7 @@ public:
 
  int Student::count=0;
 
-class Para {
+class Para:public interface {
 protected:
     string name;
     int duration;
@@ -167,6 +175,10 @@ public:
     Para() : name("Unknown"), duration(0) {}
 
     Para(string n, int d) : name(n), duration(d) {}
+
+    void print()const override{//------------eight from fifth laba
+        cout<<"la;alalalalal\n";
+    }
 
     virtual void show() const{
         cout << "para: " << name << " Duration:" << duration << " min\n";
