@@ -55,6 +55,12 @@ build CMakeFiles/l12.dir/main.cpp.obj: CXX_COMPILER__l12_unscanned_Debug C$:/Use
   OBJECT_DIR = CMakeFiles\l12.dir
   OBJECT_FILE_DIR = CMakeFiles\l12.dir
 
+build CMakeFiles/l12.dir/main/Student.cpp.obj: CXX_COMPILER__l12_unscanned_Debug C$:/Users/fakempty/Desktop/сщв/2/!!!!!!!/main/l12/main/Student.cpp || cmake_object_order_depends_target_l12
+  DEP_FILE = CMakeFiles\l12.dir\main\Student.cpp.obj.d
+  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\l12.dir
+  OBJECT_FILE_DIR = CMakeFiles\l12.dir\main
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target l12
@@ -63,7 +69,7 @@ build CMakeFiles/l12.dir/main.cpp.obj: CXX_COMPILER__l12_unscanned_Debug C$:/Use
 #############################################
 # Link the executable l12.exe
 
-build l12.exe: CXX_EXECUTABLE_LINKER__l12_Debug CMakeFiles/l12.dir/main.cpp.obj
+build l12.exe: CXX_EXECUTABLE_LINKER__l12_Debug CMakeFiles/l12.dir/main.cpp.obj CMakeFiles/l12.dir/main/Student.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\l12.dir

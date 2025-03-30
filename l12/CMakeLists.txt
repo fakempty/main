@@ -5,4 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(l12 main.cpp
         "cmake-build-debug/class student.h"
-        Student.h)
+        Student.h
+        main/Student.cpp
+        main/Student.h
+        main.cpp)
