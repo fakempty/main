@@ -296,6 +296,73 @@ class random:public Randomazer{
     }
   };*/
 
+void adminuser() {
+    string useradmin = "";
+    bool corect = false;
+    string adminpasword = "1234";
+    string password = "";
+    bool admin = false;
+
+    do {
+        corect = false;
+        cout << "hello chose who are u\n";
+        cout << "A-User   B-Admin\n";
+        cin >> useradmin;
+
+        if (useradmin.size() != 1) {
+            cout << "enter 1 digit\n";
+        } else {
+            for (int i = 0; i < useradmin.size(); i++) {
+                if ((useradmin[i] == 'A') || (useradmin[i] == 'B') || (useradmin[i] == 'b') || (useradmin[i] == 'a')) {
+                    corect = true;
+                }
+            }
+            if (!corect) {
+                cout << "wrong input\n";
+            }
+        }
+    } while (!corect);
+    switch (useradmin[0]) {
+        case 'A':
+        case 'a': {
+            int corectdigits;
+            do {
+                corectdigits = 0;
+                admin = false;
+                cout << "enter password\n";
+                cin >> password;
+
+                if (password.size() == adminpasword.size()) {  // <- виправлена помилка (додано `)`)
+                    for (int i = 0; i < password.size(); i++) {
+                        if (password[i] == adminpasword[i]) {
+                            corectdigits++;
+                        }
+                    }
+                    if (corectdigits == adminpasword.size()) {
+                        admin = true;
+                    } else {
+                        cout << "wrong password\n";
+                    }
+                } else {
+                    cout << "wrong password length\n";
+                }
+            } while (!admin);
+
+            if (admin) {
+                cout << "welcome admin\n";
+            }
+            break;
+        }
+        case 'B':
+        case 'b': {
+            cout << "welcome new user\n";
+            break;
+        }
+        default:{cout << "someting wrong\n";
+        break;}
+    }
+}
+
 int main() {
 
     /*Student student1("vasya", 19);
