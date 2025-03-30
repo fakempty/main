@@ -309,6 +309,8 @@ public:
       cout<<"-curs "<<name<<" starting\n";
       teacher->teach(student,*para);
     }
+    Curs(string n) : name(n), teacher(nullptr), para(nullptr) {}
+    Curs() : name(""), teacher(nullptr), para(nullptr) {}
     void show()const{
         cout<<"Curs "<<this->name<<"\n";
     }
@@ -403,7 +405,7 @@ void loadTeacherFromFile(vector<Asist>& teacher1,
 }
 void saveParaToFile(vector<Lecture>& para1,
                     vector<Laba>& para2){
-  ofstream file("para.txt");
+  ofstream file("paras.txt",ios::out);
   if (!file) {
      cout << "Error opening file for reading.\n";
   }
@@ -414,7 +416,7 @@ void saveParaToFile(vector<Lecture>& para1,
 }
 void loadParaFromFile(vector<Lecture>& para1,
                         vector<Laba>& para2){
-    ifstream file("para.txt");
+    ifstream file("paras.txt",ios::out);
     if (!file) {
         cout << "Error opening file for reading.\n";
         return;
@@ -434,7 +436,7 @@ void loadParaFromFile(vector<Lecture>& para1,
     file.close();
 }
 void saveCursToFile(vector<Curs>& curs1){
-    ofstream file("curs.txt");
+    ofstream file("curses.txt");
     if (!file) {
         cout << "Error opening file for reading.\n";
     }
@@ -443,7 +445,7 @@ void saveCursToFile(vector<Curs>& curs1){
     file.close();
 }
 void loadCursFromFile(vector<Curs>& curs1){
-    ifstream file("curs.txt");
+    ifstream file("curses.txt");
     if (!file) {
         cout << "Error opening file for reading.\n";
         return;
@@ -454,7 +456,7 @@ void loadCursFromFile(vector<Curs>& curs1){
 
     while (file >> type >> cursname) {
         switch (type) {
-            //case 1: curs1.emplace_back(cursname); break;//----------------------------------------
+            case 1: curs1.emplace_back(cursname); break;
             default: cout << "Error: Invalid prof/asis in file.\n"; break;
         }
     }
@@ -726,12 +728,12 @@ void adminmenu(vector<firstyearStudent>& student1,
                      default:{
                        cout << "\nwrong input\n";
                      }break;
-                     saveParaToFile(para1, para2);
                    }
                  }else{
                    cout<<"wrong inputuuu\n";
                  }
                }while(!corect);
+             saveParaToFile(para1, para2);
              }break;
              case 'i':
              case 'I': {
@@ -758,19 +760,19 @@ void adminmenu(vector<firstyearStudent>& student1,
                  if(tempcurs.size() == 1) {
                    switch(tempcurs[0]) {
                        case '1':{
-                           //curs1.emplace_back(tempname);//-----------------------------------------
+                           curs1.emplace_back(tempname);
                            cout<<"\nCurs1 successfully added\n";
                            corect = true;
                        }break;
                      default:{
                        cout << "\nwrong input\n";
                      }break;
-                     saveCursToFile(curs1);
                    }
                  }else{
                    cout<<"wrong input\n";
                  }
                }while(!corect);
+             saveCursToFile(curs1);
              }break;
              case 'l':
              case 'L': {
@@ -913,6 +915,4 @@ int main() {
     }else{
         usermenu(student1,student2,student3,student4,student5,teacher1,teacher2,para1,para2,curs1);
     }
-
-    return 0;
 }
